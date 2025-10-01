@@ -67,6 +67,10 @@ export default {
         "cosmic-golden": "hsl(var(--cosmic-golden))",
         "cosmic-yellow": "hsl(var(--cosmic-yellow))",
       },
+      fontFamily: {
+        sans: ["Poppins", "Inter", "sans-serif"],
+        orbitron: ["Orbitron", "sans-serif"],
+      },
       borderRadius: {
         lg: "var(--radius)",
         md: "calc(var(--radius) - 2px)",

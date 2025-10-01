@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { PlanetStation } from "@/components/PlanetStation";
 import { StarField } from "@/components/StarField";
 import { toast } from "sonner";
@@ -21,6 +22,7 @@ interface Level {
 }
 
 const Index = () => {
+  const navigate = useNavigate();
   const [levels] = useState<Level[]>([
     { id: 1, title: "Level 1: Learn SAR", planet: planetTeal, badge: "Radar Explorer", glowColor: "hsl(180 65% 50%)", progress: 100 },
     { id: 2, title: "Level 2: Flood Expert", planet: planetCyan, badge: "Flood Explorer", glowColor: "hsl(190 80% 55%)", progress: 85 },
@@ -32,9 +34,13 @@ const Index = () => {
   ]);
 
   const handlePlay = (level: Level) => {
-    toast.success(`Starting ${level.title}!`, {
-      description: `Unlock the ${level.badge} badge and save the day! 🌊`,
-    });
+    if (level.id === 1) {
+      navigate("/level/1");
+    } else {
+      toast.success(`Starting ${level.title}!`, {
+        description: `Unlock the ${level.badge} badge and save the day! 🌊`,
+      });
+    }
   };
 
   return (
