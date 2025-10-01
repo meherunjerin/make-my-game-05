@@ -102,15 +102,17 @@ export const PlanetStation = ({
         {/* SAR Satellite orbiting */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="animate-orbit" style={{ animationDuration: "20s" }}>
-            <div className="w-8 h-8 flex items-center justify-center">
+            <div className="w-20 h-20 flex items-center justify-center">
               <div className="relative">
                 {/* Satellite body */}
-                <div className="w-6 h-4 bg-gradient-to-br from-cosmic-cyan to-cosmic-blue rounded-sm border border-cosmic-cyan/50 shadow-lg" style={{ boxShadow: `0 0 10px ${glowColor}` }} />
+                <div className="w-12 h-8 bg-gradient-to-br from-cosmic-cyan to-cosmic-blue rounded-sm border-2 border-cosmic-cyan shadow-lg" style={{ boxShadow: `0 0 20px hsl(190 80% 55%), 0 0 40px hsl(190 80% 55% / 0.5)` }} />
                 {/* Solar panels */}
-                <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-2 h-6 bg-cosmic-blue/60 border border-cosmic-cyan/30" />
-                <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-2 h-6 bg-cosmic-blue/60 border border-cosmic-cyan/30" />
+                <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-4 h-10 bg-gradient-to-r from-cosmic-blue to-cosmic-cyan/80 border-2 border-cosmic-cyan/50 shadow-lg" />
+                <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-4 h-10 bg-gradient-to-l from-cosmic-blue to-cosmic-cyan/80 border-2 border-cosmic-cyan/50 shadow-lg" />
                 {/* Antenna */}
-                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-0.5 h-2 bg-cosmic-cyan" />
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-1 h-4 bg-cosmic-cyan shadow-lg" style={{ boxShadow: `0 0 10px hsl(190 80% 55%)` }} />
+                {/* Dish */}
+                <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full w-3 h-3 bg-cosmic-cyan/60 rounded-full border border-cosmic-cyan" />
               </div>
             </div>
           </div>
