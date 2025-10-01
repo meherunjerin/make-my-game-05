@@ -36,6 +36,8 @@ const Index = () => {
   const handlePlay = (level: Level) => {
     if (level.id === 1) {
       navigate("/level/1");
+    } else if (level.id === 2) {
+      navigate("/level/2");
     } else {
       toast.success(`Starting ${level.title}!`, {
         description: `Unlock the ${level.badge} badge and save the day! 🌊`,
