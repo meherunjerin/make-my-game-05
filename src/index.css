@@ -41,7 +41,12 @@ All colors MUST be HSL.
     /* Cosmic theme colors */
     --cosmic-purple: 280 70% 35%;
     --cosmic-magenta: 320 60% 50%;
-    --cosmic-teal: 180 65% 45%;
+    --cosmic-teal: 180 65% 50%;
+    --cosmic-cyan: 190 80% 55%;
+    --cosmic-blue: 200 90% 60%;
+    --cosmic-orange: 25 95% 55%;
+    --cosmic-pink: 340 80% 65%;
+    --cosmic-golden: 45 95% 60%;
     --cosmic-yellow: 45 90% 55%;
     
     /* Gradients */
@@ -49,9 +54,14 @@ All colors MUST be HSL.
     --gradient-planet: radial-gradient(circle, hsl(320 60% 50% / 0.3), transparent);
     
     /* Glow effects */
-    --glow-magenta: 0 0 40px hsl(320 60% 50% / 0.4);
-    --glow-teal: 0 0 40px hsl(180 65% 45% / 0.4);
-    --glow-yellow: 0 0 40px hsl(45 90% 55% / 0.4);
+    --glow-magenta: 0 0 40px hsl(320 60% 50% / 0.5);
+    --glow-teal: 0 0 40px hsl(180 65% 50% / 0.5);
+    --glow-cyan: 0 0 40px hsl(190 80% 55% / 0.5);
+    --glow-blue: 0 0 40px hsl(200 90% 60% / 0.5);
+    --glow-orange: 0 0 40px hsl(25 95% 55% / 0.5);
+    --glow-pink: 0 0 40px hsl(340 80% 65% / 0.5);
+    --glow-golden: 0 0 60px hsl(45 95% 60% / 0.7);
+    --glow-yellow: 0 0 40px hsl(45 90% 55% / 0.5);
 
     --sidebar-background: 0 0% 98%;
 

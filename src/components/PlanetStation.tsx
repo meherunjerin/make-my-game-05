@@ -9,6 +9,9 @@ interface PlanetStationProps {
   planetImage: string;
   progress: number;
   position: "left" | "right";
+  badge: string;
+  glowColor: string;
+  isUnlocked?: boolean;
   onPlay: () => void;
 }
 
@@ -17,6 +20,9 @@ export const PlanetStation = ({
   planetImage, 
   progress, 
   position,
+  badge,
+  glowColor,
+  isUnlocked = false,
   onPlay 
 }: PlanetStationProps) => {
   const [isHovered, setIsHovered] = useState(false);
@@ -42,16 +48,21 @@ export const PlanetStation = ({
         </div>
 
         {/* Glow effect */}
-        <div className={cn(
-          "absolute inset-0 w-[300px] h-[300px] rounded-full blur-xl transition-opacity duration-500",
-          "bg-primary/30",
-          isHovered ? "opacity-100" : "opacity-50"
-        )} />
+        <div 
+          className={cn(
+            "absolute inset-0 w-[300px] h-[300px] rounded-full blur-xl transition-all duration-500",
+            isHovered ? "opacity-100 scale-110" : "opacity-60"
+          )}
+          style={{ 
+            backgroundColor: glowColor,
+            boxShadow: isUnlocked ? `0 0 80px ${glowColor}` : `0 0 40px ${glowColor}`
+          }}
+        />
 
         {/* Planet */}
         <div className={cn(
-          "relative w-[300px] h-[300px] rounded-full overflow-hidden transition-transform duration-500 animate-float",
-          isHovered && "scale-110"
+          "relative w-[300px] h-[300px] rounded-full overflow-hidden transition-all duration-500 animate-float",
+          isHovered && "scale-110 animate-bounce"
         )}>
           <img 
             src={planetImage} 
@@ -64,7 +75,14 @@ export const PlanetStation = ({
             "absolute inset-0 flex items-center justify-center bg-background/20 backdrop-blur-sm transition-opacity duration-300",
             isHovered ? "opacity-100" : "opacity-0"
           )}>
-            <Button size="lg" className="rounded-full w-16 h-16 animate-glow">
+            <Button 
+              size="lg" 
+              className="rounded-full w-16 h-16"
+              style={{ 
+                boxShadow: `0 0 30px ${glowColor}`,
+                animation: isUnlocked ? 'glow 2s ease-in-out infinite' : 'none'
+              }}
+            >
               <Play className="w-8 h-8 fill-current" />
             </Button>
           </div>
@@ -88,7 +106,24 @@ export const PlanetStation = ({
         position === "right" ? "text-right" : "text-left"
       )}>
         <h2 className="text-4xl font-bold text-foreground">{title}</h2>
-        <div className="max-w-md">
+        <div 
+          className={cn(
+            "inline-block px-6 py-2 rounded-full text-lg font-bold transition-all duration-300",
+            "border-2"
+          )}
+          style={{ 
+            borderColor: glowColor,
+            color: glowColor,
+            backgroundColor: `${glowColor}20`,
+            boxShadow: isHovered ? `0 0 20px ${glowColor}` : 'none'
+          }}
+        >
+          🏆 {badge}
+        </div>
+        <div className={cn(
+          "max-w-md",
+          position === "right" ? "ml-auto" : ""
+        )}>
           <Progress value={progress} className="h-3" />
           <p className="text-sm text-muted-foreground mt-2">{progress}% Complete</p>
         </div>
