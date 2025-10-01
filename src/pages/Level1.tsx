@@ -83,8 +83,50 @@ const Level1 = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-b from-background via-cosmic-purple to-background overflow-hidden relative">
+    <div className="min-h-screen bg-gradient-to-b from-background via-cosmic-purple to-cosmic-teal/20 overflow-hidden relative">
       <StarField />
+      
+      {/* Orbiting Satellites */}
+      <div className="absolute top-20 right-20 animate-orbit" style={{ animationDuration: "25s" }}>
+        <div className="w-20 h-20 flex items-center justify-center">
+          <div className="relative">
+            {/* Satellite body */}
+            <div className="w-12 h-8 bg-gradient-to-br from-cosmic-teal to-cosmic-cyan rounded-sm border-2 border-cosmic-teal shadow-lg" style={{ boxShadow: '0 0 20px hsl(180 65% 50%), 0 0 40px hsl(180 65% 50% / 0.5)' }} />
+            {/* Solar panels */}
+            <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-4 h-10 bg-gradient-to-r from-cosmic-teal to-cosmic-cyan/80 border-2 border-cosmic-teal/50 shadow-lg" />
+            <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-4 h-10 bg-gradient-to-l from-cosmic-teal to-cosmic-cyan/80 border-2 border-cosmic-teal/50 shadow-lg" />
+            {/* Antenna */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-1 h-4 bg-cosmic-teal shadow-lg" style={{ boxShadow: '0 0 10px hsl(180 65% 50%)' }} />
+            {/* Dish */}
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full w-3 h-3 bg-cosmic-teal/60 rounded-full border border-cosmic-teal" />
+          </div>
+        </div>
+      </div>
+
+      <div className="absolute bottom-40 left-20 animate-orbit" style={{ animationDuration: "30s", animationDelay: "-5s" }}>
+        <div className="w-20 h-20 flex items-center justify-center">
+          <div className="relative">
+            {/* Satellite body */}
+            <div className="w-12 h-8 bg-gradient-to-br from-cosmic-cyan to-cosmic-blue rounded-sm border-2 border-cosmic-cyan shadow-lg" style={{ boxShadow: '0 0 20px hsl(190 80% 55%), 0 0 40px hsl(190 80% 55% / 0.5)' }} />
+            {/* Solar panels */}
+            <div className="absolute -left-4 top-1/2 -translate-y-1/2 w-4 h-10 bg-gradient-to-r from-cosmic-blue to-cosmic-cyan/80 border-2 border-cosmic-cyan/50 shadow-lg" />
+            <div className="absolute -right-4 top-1/2 -translate-y-1/2 w-4 h-10 bg-gradient-to-l from-cosmic-blue to-cosmic-cyan/80 border-2 border-cosmic-cyan/50 shadow-lg" />
+            {/* Antenna */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-1 h-4 bg-cosmic-cyan shadow-lg" style={{ boxShadow: '0 0 10px hsl(190 80% 55%)' }} />
+            {/* Dish */}
+            <div className="absolute -top-2 left-1/2 -translate-x-1/2 -translate-y-full w-3 h-3 bg-cosmic-cyan/60 rounded-full border border-cosmic-cyan" />
+          </div>
+        </div>
+      </div>
+
+      {/* Floating planets */}
+      <div className="absolute top-32 left-32 w-16 h-16 bg-gradient-to-br from-cosmic-teal/40 to-cosmic-cyan/40 rounded-full blur-sm animate-float" style={{ animationDuration: "8s" }} />
+      <div className="absolute bottom-32 right-32 w-24 h-24 bg-gradient-to-br from-cosmic-magenta/30 to-cosmic-purple/30 rounded-full blur-sm animate-float" style={{ animationDuration: "10s", animationDelay: "-2s" }} />
+      <div className="absolute top-1/2 right-20 w-12 h-12 bg-gradient-to-br from-cosmic-cyan/40 to-cosmic-blue/40 rounded-full blur-sm animate-float" style={{ animationDuration: "7s", animationDelay: "-4s" }} />
+      
+      {/* Cosmic glow effects */}
+      <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cosmic-teal/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "4s" }} />
+      <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-cosmic-purple/20 rounded-full blur-3xl animate-pulse" style={{ animationDuration: "5s", animationDelay: "-2s" }} />
       
       {/* Back to Home Button */}
       <Button
