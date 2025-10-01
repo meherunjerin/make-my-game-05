@@ -22,12 +22,12 @@ interface Level {
 
 const Index = () => {
   const [levels] = useState<Level[]>([
-    { id: 1, title: "Learn SAR", planet: planetTeal, badge: "Radar Explorer", glowColor: "hsl(180 65% 50%)", progress: 100 },
-    { id: 2, title: "Flood Basics", planet: planetCyan, badge: "Flood Explorer", glowColor: "hsl(190 80% 55%)", progress: 85 },
-    { id: 3, title: "Safety Measures", planet: planetMagenta, badge: "Safety Hero", glowColor: "hsl(320 60% 50%)", progress: 60 },
-    { id: 4, title: "Flood Forecast", planet: planetBlue, badge: "Future Planner", glowColor: "hsl(200 90% 60%)", progress: 40 },
-    { id: 5, title: "Flood in Feni", planet: planetOrange, badge: "Flood Finder", glowColor: "hsl(25 95% 55%)", progress: 20 },
-    { id: 6, title: "Family Check", planet: planetPink, badge: "Protector", glowColor: "hsl(340 80% 65%)", progress: 0 },
+    { id: 1, title: "Level 1: Learn SAR", planet: planetTeal, badge: "Radar Explorer", glowColor: "hsl(180 65% 50%)", progress: 100 },
+    { id: 2, title: "Level 2: Flood Expert", planet: planetCyan, badge: "Flood Explorer", glowColor: "hsl(190 80% 55%)", progress: 85 },
+    { id: 3, title: "Level 3: Safety Measures", planet: planetMagenta, badge: "Safety Hero", glowColor: "hsl(320 60% 50%)", progress: 60 },
+    { id: 4, title: "Level 4: Flood Forecast", planet: planetBlue, badge: "Future Planner", glowColor: "hsl(200 90% 60%)", progress: 40 },
+    { id: 5, title: "Level 5: Flood Finder", planet: planetOrange, badge: "Flood Finder", glowColor: "hsl(25 95% 55%)", progress: 20 },
+    { id: 6, title: "Level 6: Guidelines to Survive Flood", planet: planetPink, badge: "Protector", glowColor: "hsl(340 80% 65%)", progress: 0 },
     { id: 7, title: "Flood Guardian", planet: planetTrophy, badge: "Champion", glowColor: "hsl(45 95% 60%)", progress: 100, isUnlocked: true },
   ]);
 

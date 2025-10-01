@@ -98,6 +98,23 @@ export const PlanetStation = ({
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
           <div className="w-2.5 h-2.5 bg-primary rounded-full animate-orbit" style={{ animationDuration: "18s", animationDelay: "-6s" }} />
         </div>
+
+        {/* SAR Satellite orbiting */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
+          <div className="animate-orbit" style={{ animationDuration: "20s" }}>
+            <div className="w-8 h-8 flex items-center justify-center">
+              <div className="relative">
+                {/* Satellite body */}
+                <div className="w-6 h-4 bg-gradient-to-br from-cosmic-cyan to-cosmic-blue rounded-sm border border-cosmic-cyan/50 shadow-lg" style={{ boxShadow: `0 0 10px ${glowColor}` }} />
+                {/* Solar panels */}
+                <div className="absolute -left-2 top-1/2 -translate-y-1/2 w-2 h-6 bg-cosmic-blue/60 border border-cosmic-cyan/30" />
+                <div className="absolute -right-2 top-1/2 -translate-y-1/2 w-2 h-6 bg-cosmic-blue/60 border border-cosmic-cyan/30" />
+                {/* Antenna */}
+                <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-full w-0.5 h-2 bg-cosmic-cyan" />
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
       {/* Info Panel */}

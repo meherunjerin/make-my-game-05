@@ -34,7 +34,7 @@ export const StarField = () => {
       {stars.map((star) => (
         <div
           key={star.id}
-          className="absolute bg-foreground rounded-full animate-twinkle"
+          className="absolute bg-foreground/80 rounded-full animate-twinkle"
           style={{
             left: `${star.x}%`,
             top: `${star.y}%`,
@@ -42,6 +42,7 @@ export const StarField = () => {
             height: `${star.size}px`,
             animationDuration: `${star.duration}s`,
             animationDelay: `${Math.random() * 2}s`,
+            boxShadow: `0 0 ${star.size * 2}px rgba(255, 255, 255, 0.5)`,
           }}
         />
       ))}
