@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { StarField } from "@/components/StarField";
-import { Play, Pause, RotateCcw, ArrowRight, Check, X } from "lucide-react";
+import { Play, Pause, RotateCcw, ArrowRight, Check, X, Home } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -85,6 +85,17 @@ const Level1 = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-background via-cosmic-purple to-background overflow-hidden relative">
       <StarField />
+      
+      {/* Back to Home Button */}
+      <Button
+        onClick={() => navigate("/")}
+        variant="outline"
+        size="lg"
+        className="fixed top-6 left-6 z-50 border-cosmic-teal text-cosmic-teal hover:bg-cosmic-teal/20 backdrop-blur-md bg-background/80"
+      >
+        <Home className="w-5 h-5 mr-2" />
+        Back to Home
+      </Button>
       
       <div className="relative z-10 container mx-auto px-4 py-8">
         {/* Intro Stage */}

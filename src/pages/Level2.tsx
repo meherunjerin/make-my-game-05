@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { StarField } from "@/components/StarField";
-import { Play, Pause, RotateCcw, ArrowRight, Check, X, Waves } from "lucide-react";
+import { Play, Pause, RotateCcw, ArrowRight, Check, X, Waves, Home } from "lucide-react";
 import { toast } from "sonner";
 import { cn } from "@/lib/utils";
 
@@ -134,6 +134,17 @@ const Level2 = () => {
   return (
     <div className="min-h-screen bg-gradient-to-b from-cosmic-cyan/20 via-cosmic-blue/30 to-background overflow-hidden relative">
       <StarField />
+      
+      {/* Back to Home Button */}
+      <Button
+        onClick={() => navigate("/")}
+        variant="outline"
+        size="lg"
+        className="fixed top-6 left-6 z-50 border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20 backdrop-blur-md bg-background/80"
+      >
+        <Home className="w-5 h-5 mr-2" />
+        Back to Home
+      </Button>
       
       {/* Floating water droplets */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
