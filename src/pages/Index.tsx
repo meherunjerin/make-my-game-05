@@ -62,7 +62,55 @@ const Index = () => {
           </p>
         </header>
 
-        <div className="space-y-8">
+        <div className="relative space-y-8">
+          {/* Path lines connecting planets */}
+          <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
+            <defs>
+              <linearGradient id="pathGradient1" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(180 65% 50%)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="hsl(190 80% 55%)" stopOpacity="0.6" />
+              </linearGradient>
+              <linearGradient id="pathGradient2" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(190 80% 55%)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="hsl(320 60% 50%)" stopOpacity="0.6" />
+              </linearGradient>
+              <linearGradient id="pathGradient3" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(320 60% 50%)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="hsl(200 90% 60%)" stopOpacity="0.6" />
+              </linearGradient>
+              <linearGradient id="pathGradient4" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(200 90% 60%)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="hsl(25 95% 55%)" stopOpacity="0.6" />
+              </linearGradient>
+              <linearGradient id="pathGradient5" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(25 95% 55%)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="hsl(340 80% 65%)" stopOpacity="0.6" />
+              </linearGradient>
+              <linearGradient id="pathGradient6" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="hsl(340 80% 65%)" stopOpacity="0.6" />
+                <stop offset="100%" stopColor="hsl(45 95% 60%)" stopOpacity="0.6" />
+              </linearGradient>
+            </defs>
+            
+            {/* Path from Level 1 to Level 2 (left to right) */}
+            <path d="M 15% 12% Q 50% 18%, 85% 24%" stroke="url(#pathGradient1)" strokeWidth="3" fill="none" strokeDasharray="10,5" className="animate-pulse" />
+            
+            {/* Path from Level 2 to Level 3 (right to left) */}
+            <path d="M 85% 36% Q 50% 42%, 15% 48%" stroke="url(#pathGradient2)" strokeWidth="3" fill="none" strokeDasharray="10,5" className="animate-pulse" style={{ animationDelay: "0.3s" }} />
+            
+            {/* Path from Level 3 to Level 4 (left to right) */}
+            <path d="M 15% 60% Q 50% 66%, 85% 72%" stroke="url(#pathGradient3)" strokeWidth="3" fill="none" strokeDasharray="10,5" className="animate-pulse" style={{ animationDelay: "0.6s" }} />
+            
+            {/* Path from Level 4 to Level 5 (right to left) */}
+            <path d="M 85% 84% Q 50% 90%, 15% 96%" stroke="url(#pathGradient4)" strokeWidth="3" fill="none" strokeDasharray="10,5" className="animate-pulse" style={{ animationDelay: "0.9s" }} />
+            
+            {/* Path from Level 5 to Level 6 (left to right) */}
+            <path d="M 15% 108% Q 50% 114%, 85% 120%" stroke="url(#pathGradient5)" strokeWidth="3" fill="none" strokeDasharray="10,5" className="animate-pulse" style={{ animationDelay: "1.2s" }} />
+            
+            {/* Path from Level 6 to Level 7 (right to center) */}
+            <path d="M 85% 132% Q 65% 138%, 50% 144%" stroke="url(#pathGradient6)" strokeWidth="3" fill="none" strokeDasharray="10,5" className="animate-pulse" style={{ animationDelay: "1.5s" }} />
+          </svg>
+          
           {levels.map((level, index) => (
             <PlanetStation
               key={level.id}
