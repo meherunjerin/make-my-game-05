@@ -24,8 +24,9 @@ type Village = {
 
 const Level2 = () => {
   const navigate = useNavigate();
-  const [stage, setStage] = useState<"intro" | "video" | "minigame" | "quiz" | "completion">("intro");
+  const [stage, setStage] = useState<"intro" | "video1" | "video2" | "video3" | "minigame" | "quiz" | "completion">("intro");
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(1);
   const [villages, setVillages] = useState<Village[]>([
     { id: 1, x: 20, y: 30, isFlooded: true },
     { id: 2, x: 45, y: 20, isFlooded: false },
@@ -62,10 +63,24 @@ const Level2 = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const handleIntroComplete = () => {
-    setStage("video");
+    setStage("video1");
+    setCurrentVideo(1);
+    setVideoPlaying(false);
   };
 
-  const handleVideoEnd = () => {
+  const handleVideo1End = () => {
+    setStage("video2");
+    setCurrentVideo(2);
+    setVideoPlaying(false);
+  };
+
+  const handleVideo2End = () => {
+    setStage("video3");
+    setCurrentVideo(3);
+    setVideoPlaying(false);
+  };
+
+  const handleVideo3End = () => {
     setStage("minigame");
   };
 
@@ -204,24 +219,27 @@ const Level2 = () => {
           </div>
         )}
 
-        {/* Video Stage */}
-        {stage === "video" && (
+        {/* Video 1 Stage */}
+        {stage === "video1" && (
           <div className="flex items-center justify-center min-h-screen animate-fade-in">
             <Card className="p-8 bg-card/90 backdrop-blur-md border-cosmic-cyan shadow-[0_0_40px_hsl(190_80%_55%/0.3)] max-w-4xl">
-              <h2 className="text-3xl font-bold mb-6 text-cosmic-cyan text-center font-orbitron flex items-center justify-center gap-3">
-                <Waves className="w-8 h-8" />
-                Why Do Floods Happen?
-                <Waves className="w-8 h-8" />
-              </h2>
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-bold text-cosmic-cyan font-orbitron flex items-center gap-3">
+                  <Waves className="w-8 h-8" />
+                  What is a Flood?
+                  <Waves className="w-8 h-8" />
+                </h2>
+                <span className="text-cosmic-cyan font-semibold">Video 1 of 3</span>
+              </div>
               
               {/* Video Player Placeholder */}
               <div className="relative aspect-video bg-gradient-to-br from-cosmic-cyan/20 to-cosmic-blue/20 rounded-lg mb-6 overflow-hidden border-2 border-cosmic-cyan shadow-[0_0_30px_hsl(190_80%_55%/0.4)]">
                 <div className="absolute inset-0 flex items-center justify-center">
                   {!videoPlaying ? (
                     <div className="text-center">
-                      <div className="text-6xl mb-4">🌧️</div>
+                      <div className="text-6xl mb-4">🌊</div>
                       <p className="text-xl text-foreground/80 mb-2 px-8">
-                        Learn about floods in Bangladesh
+                        Understanding floods
                       </p>
                       <Button
                         size="lg"
@@ -236,31 +254,26 @@ const Level2 = () => {
                       <div className="text-7xl animate-bounce">🌊</div>
                       <div className="space-y-4 text-lg text-foreground/90 max-w-2xl">
                         <p className="animate-fade-in flex items-center gap-3 justify-center">
-                          <span className="text-3xl">☔</span>
-                          When it rains too much in Bangladesh...
+                          <span className="text-3xl">💧</span>
+                          A flood is when water covers land that is usually dry
                         </p>
                         <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "2s" }}>
                           <span className="text-3xl">🏞️</span>
-                          Rivers can't hold all the water
+                          It happens when there's too much water in rivers and streams
                         </p>
                         <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "4s" }}>
-                          <span className="text-3xl">🌊</span>
-                          So water spreads into villages and fields
-                        </p>
-                        <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "6s" }}>
                           <span className="text-3xl">🏘️</span>
-                          That's what we call a flood!
+                          Water then spreads into homes, streets, and fields
                         </p>
                       </div>
                     </div>
                   )}
                 </div>
                 
-                {/* Enhanced ripple effects */}
+                {/* Ripple effects */}
                 <div className="absolute inset-0 pointer-events-none">
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-4 border-cosmic-cyan/30 rounded-full animate-ping" />
                   <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 border-4 border-cosmic-blue/20 rounded-full animate-ping" style={{ animationDelay: "1s" }} />
-                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-72 h-72 border-4 border-cosmic-cyan/15 rounded-full animate-ping" style={{ animationDelay: "2s" }} />
                 </div>
               </div>
 
@@ -291,7 +304,197 @@ const Level2 = () => {
                   <RotateCcw className="w-4 h-4 mr-2" /> Replay
                 </Button>
                 <Button
-                  onClick={handleVideoEnd}
+                  onClick={handleVideo1End}
+                  className="bg-cosmic-cyan hover:bg-cosmic-cyan/80 text-background font-bold"
+                >
+                  Next Video <ArrowRight className="ml-2" />
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* Video 2 Stage */}
+        {stage === "video2" && (
+          <div className="flex items-center justify-center min-h-screen animate-fade-in">
+            <Card className="p-8 bg-card/90 backdrop-blur-md border-cosmic-cyan shadow-[0_0_40px_hsl(190_80%_55%/0.3)] max-w-4xl">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-bold text-cosmic-cyan font-orbitron flex items-center gap-3">
+                  <Waves className="w-8 h-8" />
+                  Why Do Floods Happen in Bangladesh?
+                  <Waves className="w-8 h-8" />
+                </h2>
+                <span className="text-cosmic-cyan font-semibold">Video 2 of 3</span>
+              </div>
+              
+              {/* Video Player Placeholder */}
+              <div className="relative aspect-video bg-gradient-to-br from-cosmic-cyan/20 to-cosmic-blue/20 rounded-lg mb-6 overflow-hidden border-2 border-cosmic-cyan shadow-[0_0_30px_hsl(190_80%_55%/0.4)]">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {!videoPlaying ? (
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">🌧️</div>
+                      <p className="text-xl text-foreground/80 mb-2 px-8">
+                        Learn about floods in Bangladesh
+                      </p>
+                      <Button
+                        size="lg"
+                        onClick={() => setVideoPlaying(true)}
+                        className="rounded-full w-20 h-20 bg-cosmic-cyan hover:bg-cosmic-cyan/80"
+                      >
+                        <Play className="w-10 h-10 fill-current" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center w-full h-full flex flex-col items-center justify-center p-8 space-y-6">
+                      <div className="text-7xl animate-bounce">☔</div>
+                      <div className="space-y-4 text-lg text-foreground/90 max-w-2xl">
+                        <p className="animate-fade-in flex items-center gap-3 justify-center">
+                          <span className="text-3xl">🌧️</span>
+                          Bangladesh gets heavy monsoon rains every year
+                        </p>
+                        <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "2s" }}>
+                          <span className="text-3xl">🏔️</span>
+                          Water flows down from mountains into big rivers
+                        </p>
+                        <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "4s" }}>
+                          <span className="text-3xl">🌊</span>
+                          Rivers overflow and water spreads everywhere!
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Ripple effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-4 border-cosmic-cyan/30 rounded-full animate-ping" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 border-4 border-cosmic-blue/20 rounded-full animate-ping" style={{ animationDelay: "1s" }} />
+                </div>
+              </div>
+
+              {/* Video Controls */}
+              <div className="flex gap-4 justify-center">
+                {!videoPlaying ? (
+                  <Button
+                    onClick={() => setVideoPlaying(true)}
+                    variant="outline"
+                    className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                  >
+                    <Play className="w-4 h-4 mr-2" /> Play
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => setVideoPlaying(false)}
+                    variant="outline"
+                    className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                  >
+                    <Pause className="w-4 h-4 mr-2" /> Pause
+                  </Button>
+                )}
+                <Button
+                  onClick={() => setVideoPlaying(false)}
+                  variant="outline"
+                  className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" /> Replay
+                </Button>
+                <Button
+                  onClick={handleVideo2End}
+                  className="bg-cosmic-cyan hover:bg-cosmic-cyan/80 text-background font-bold"
+                >
+                  Next Video <ArrowRight className="ml-2" />
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* Video 3 Stage */}
+        {stage === "video3" && (
+          <div className="flex items-center justify-center min-h-screen animate-fade-in">
+            <Card className="p-8 bg-card/90 backdrop-blur-md border-cosmic-cyan shadow-[0_0_40px_hsl(190_80%_55%/0.3)] max-w-4xl">
+              <div className="flex items-center justify-between mb-6">
+                <h2 className="text-3xl font-bold text-cosmic-cyan font-orbitron flex items-center gap-3">
+                  <Waves className="w-8 h-8" />
+                  How Floods Affect People
+                  <Waves className="w-8 h-8" />
+                </h2>
+                <span className="text-cosmic-cyan font-semibold">Video 3 of 3</span>
+              </div>
+              
+              {/* Video Player Placeholder */}
+              <div className="relative aspect-video bg-gradient-to-br from-cosmic-cyan/20 to-cosmic-blue/20 rounded-lg mb-6 overflow-hidden border-2 border-cosmic-cyan shadow-[0_0_30px_hsl(190_80%_55%/0.4)]">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {!videoPlaying ? (
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">🏘️</div>
+                      <p className="text-xl text-foreground/80 mb-2 px-8">
+                        Understanding flood impacts
+                      </p>
+                      <Button
+                        size="lg"
+                        onClick={() => setVideoPlaying(true)}
+                        className="rounded-full w-20 h-20 bg-cosmic-cyan hover:bg-cosmic-cyan/80"
+                      >
+                        <Play className="w-10 h-10 fill-current" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center w-full h-full flex flex-col items-center justify-center p-8 space-y-6">
+                      <div className="text-7xl animate-bounce">🏘️</div>
+                      <div className="space-y-4 text-lg text-foreground/90 max-w-2xl">
+                        <p className="animate-fade-in flex items-center gap-3 justify-center">
+                          <span className="text-3xl">🏠</span>
+                          Floods can damage homes and schools
+                        </p>
+                        <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "2s" }}>
+                          <span className="text-3xl">🌾</span>
+                          Crops and farms can be destroyed by flood water
+                        </p>
+                        <p className="animate-fade-in flex items-center gap-3 justify-center" style={{ animationDelay: "4s" }}>
+                          <span className="text-3xl">🚨</span>
+                          That's why we need to learn how to stay safe!
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Ripple effects */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-40 border-4 border-cosmic-cyan/30 rounded-full animate-ping" />
+                  <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-56 h-56 border-4 border-cosmic-blue/20 rounded-full animate-ping" style={{ animationDelay: "1s" }} />
+                </div>
+              </div>
+
+              {/* Video Controls */}
+              <div className="flex gap-4 justify-center">
+                {!videoPlaying ? (
+                  <Button
+                    onClick={() => setVideoPlaying(true)}
+                    variant="outline"
+                    className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                  >
+                    <Play className="w-4 h-4 mr-2" /> Play
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => setVideoPlaying(false)}
+                    variant="outline"
+                    className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                  >
+                    <Pause className="w-4 h-4 mr-2" /> Pause
+                  </Button>
+                )}
+                <Button
+                  onClick={() => setVideoPlaying(false)}
+                  variant="outline"
+                  className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" /> Replay
+                </Button>
+                <Button
+                  onClick={handleVideo3End}
                   className="bg-cosmic-cyan hover:bg-cosmic-cyan/80 text-background font-bold"
                 >
                   Play Mini-Game <ArrowRight className="ml-2" />
