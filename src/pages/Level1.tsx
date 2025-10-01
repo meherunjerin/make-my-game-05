@@ -16,8 +16,9 @@ type QuizAnswer = {
 
 const Level1 = () => {
   const navigate = useNavigate();
-  const [stage, setStage] = useState<"intro" | "video" | "quiz" | "completion">("intro");
+  const [stage, setStage] = useState<"intro" | "video1" | "video2" | "video3" | "quiz" | "completion">("intro");
   const [videoPlaying, setVideoPlaying] = useState(false);
+  const [currentVideo, setCurrentVideo] = useState(1);
   const [quizAnswers, setQuizAnswers] = useState<QuizAnswer[]>([
     {
       question: "Can radar see through clouds?",
@@ -44,11 +45,25 @@ const Level1 = () => {
   const [currentQuestion, setCurrentQuestion] = useState(0);
 
   const handleIntroComplete = () => {
-    setStage("video");
+    setStage("video1");
+    setCurrentVideo(1);
   };
 
-  const handleVideoEnd = () => {
+  const handleVideo1End = () => {
+    setStage("video2");
+    setCurrentVideo(2);
+    setVideoPlaying(false);
+  };
+
+  const handleVideo2End = () => {
+    setStage("video3");
+    setCurrentVideo(3);
+    setVideoPlaying(false);
+  };
+
+  const handleVideo3End = () => {
     setStage("quiz");
+    setVideoPlaying(false);
   };
 
   const handleAnswer = (questionIndex: number, optionIndex: number) => {
@@ -167,13 +182,16 @@ const Level1 = () => {
           </div>
         )}
 
-        {/* Video Stage */}
-        {stage === "video" && (
+        {/* Video 1: Understanding SAR Technology */}
+        {stage === "video1" && (
           <div className="flex items-center justify-center min-h-screen animate-fade-in">
             <Card className="p-8 bg-card/90 backdrop-blur-md border-cosmic-teal shadow-[0_0_40px_hsl(180_65%_50%/0.3)] max-w-4xl">
-              <h2 className="text-3xl font-bold mb-6 text-cosmic-teal text-center font-orbitron">
-                🌐 Understanding SAR Technology
-              </h2>
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-bold text-cosmic-teal font-orbitron">
+                  🌐 Video 1: Understanding SAR Technology
+                </h2>
+                <span className="text-cosmic-cyan font-semibold">1/3</span>
+              </div>
               
               {/* Video Player Placeholder */}
               <div className="relative aspect-video bg-gradient-to-br from-cosmic-purple to-cosmic-teal/20 rounded-lg mb-6 overflow-hidden border-2 border-cosmic-cyan shadow-[0_0_30px_hsl(190_80%_55%/0.4)]">
@@ -182,7 +200,7 @@ const Level1 = () => {
                     <div className="text-center">
                       <div className="text-6xl mb-4">🛰️</div>
                       <p className="text-xl text-foreground/80 mb-6 px-8">
-                        "Radar sees through clouds and shows us floods, even at night!"
+                        "Discover what SAR technology is and how it works!"
                       </p>
                       <Button
                         size="lg"
@@ -197,9 +215,9 @@ const Level1 = () => {
                       <div className="text-8xl mb-6 animate-pulse">📡</div>
                       <div className="space-y-4 text-lg text-foreground/90 max-w-2xl">
                         <p className="animate-fade-in">🛰️ SAR stands for Synthetic Aperture Radar</p>
-                        <p className="animate-fade-in" style={{ animationDelay: "2s" }}>☁️ It can see through clouds and darkness</p>
-                        <p className="animate-fade-in" style={{ animationDelay: "4s" }}>🌊 Water appears dark in radar images</p>
-                        <p className="animate-fade-in" style={{ animationDelay: "6s" }}>🌙 Works day and night to keep us safe!</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "2s" }}>📡 It sends radio waves to Earth and measures the reflection</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "4s" }}>🌍 This creates detailed images of the Earth's surface</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "6s" }}>⚡ Works 24/7 regardless of weather conditions!</p>
                       </div>
                     </div>
                   )}
@@ -239,8 +257,177 @@ const Level1 = () => {
                   <RotateCcw className="w-4 h-4 mr-2" /> Replay
                 </Button>
                 <Button
-                  onClick={handleVideoEnd}
+                  onClick={handleVideo1End}
                   className="bg-cosmic-cyan hover:bg-cosmic-cyan/80 text-background font-bold"
+                >
+                  Next Video <ArrowRight className="ml-2" />
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* Video 2: Seeing Through Clouds */}
+        {stage === "video2" && (
+          <div className="flex items-center justify-center min-h-screen animate-fade-in">
+            <Card className="p-8 bg-card/90 backdrop-blur-md border-cosmic-cyan shadow-[0_0_40px_hsl(190_80%_55%/0.3)] max-w-4xl">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-bold text-cosmic-cyan font-orbitron">
+                  ☁️ Video 2: Seeing Through Clouds
+                </h2>
+                <span className="text-cosmic-teal font-semibold">2/3</span>
+              </div>
+              
+              {/* Video Player Placeholder */}
+              <div className="relative aspect-video bg-gradient-to-br from-cosmic-blue to-cosmic-cyan/20 rounded-lg mb-6 overflow-hidden border-2 border-cosmic-teal shadow-[0_0_30px_hsl(180_65%_50%/0.4)]">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {!videoPlaying ? (
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">☁️</div>
+                      <p className="text-xl text-foreground/80 mb-6 px-8">
+                        "Learn how SAR can see through clouds and darkness!"
+                      </p>
+                      <Button
+                        size="lg"
+                        onClick={() => setVideoPlaying(true)}
+                        className="rounded-full w-20 h-20 bg-cosmic-teal hover:bg-cosmic-teal/80"
+                      >
+                        <Play className="w-10 h-10 fill-current" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center w-full h-full flex flex-col items-center justify-center p-8">
+                      <div className="text-8xl mb-6 animate-pulse">🌤️</div>
+                      <div className="space-y-4 text-lg text-foreground/90 max-w-2xl">
+                        <p className="animate-fade-in">☁️ Unlike cameras, SAR can see through clouds</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "2s" }}>🌙 It works perfectly at night without sunlight</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "4s" }}>🌧️ Rain and fog don't block radar signals</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "6s" }}>✨ This makes it perfect for monitoring floods!</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Cloud animation */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-1/4 left-1/4 w-24 h-24 bg-white/10 rounded-full blur-xl animate-float" />
+                  <div className="absolute top-1/3 right-1/4 w-32 h-32 bg-white/10 rounded-full blur-xl animate-float" style={{ animationDelay: "1s" }} />
+                </div>
+              </div>
+
+              {/* Video Controls */}
+              <div className="flex gap-4 justify-center">
+                {!videoPlaying ? (
+                  <Button
+                    onClick={() => setVideoPlaying(true)}
+                    variant="outline"
+                    className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                  >
+                    <Play className="w-4 h-4 mr-2" /> Play
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => setVideoPlaying(false)}
+                    variant="outline"
+                    className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                  >
+                    <Pause className="w-4 h-4 mr-2" /> Pause
+                  </Button>
+                )}
+                <Button
+                  onClick={() => setVideoPlaying(false)}
+                  variant="outline"
+                  className="border-cosmic-cyan text-cosmic-cyan hover:bg-cosmic-cyan/20"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" /> Replay
+                </Button>
+                <Button
+                  onClick={handleVideo2End}
+                  className="bg-cosmic-teal hover:bg-cosmic-teal/80 text-background font-bold"
+                >
+                  Next Video <ArrowRight className="ml-2" />
+                </Button>
+              </div>
+            </Card>
+          </div>
+        )}
+
+        {/* Video 3: Detecting Water */}
+        {stage === "video3" && (
+          <div className="flex items-center justify-center min-h-screen animate-fade-in">
+            <Card className="p-8 bg-card/90 backdrop-blur-md border-cosmic-blue shadow-[0_0_40px_hsl(210_80%_55%/0.3)] max-w-4xl">
+              <div className="flex justify-between items-center mb-6">
+                <h2 className="text-3xl font-bold text-cosmic-blue font-orbitron">
+                  🌊 Video 3: Detecting Water from Space
+                </h2>
+                <span className="text-cosmic-cyan font-semibold">3/3</span>
+              </div>
+              
+              {/* Video Player Placeholder */}
+              <div className="relative aspect-video bg-gradient-to-br from-cosmic-teal to-cosmic-blue/20 rounded-lg mb-6 overflow-hidden border-2 border-cosmic-blue shadow-[0_0_30px_hsl(210_80%_55%/0.4)]">
+                <div className="absolute inset-0 flex items-center justify-center">
+                  {!videoPlaying ? (
+                    <div className="text-center">
+                      <div className="text-6xl mb-4">🌊</div>
+                      <p className="text-xl text-foreground/80 mb-6 px-8">
+                        "Discover how radar identifies water and floods!"
+                      </p>
+                      <Button
+                        size="lg"
+                        onClick={() => setVideoPlaying(true)}
+                        className="rounded-full w-20 h-20 bg-cosmic-blue hover:bg-cosmic-blue/80"
+                      >
+                        <Play className="w-10 h-10 fill-current" />
+                      </Button>
+                    </div>
+                  ) : (
+                    <div className="text-center w-full h-full flex flex-col items-center justify-center p-8">
+                      <div className="text-8xl mb-6 animate-pulse">💧</div>
+                      <div className="space-y-4 text-lg text-foreground/90 max-w-2xl">
+                        <p className="animate-fade-in">🌊 Water appears dark in radar images</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "2s" }}>📊 Smooth surfaces reflect signals away from satellite</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "4s" }}>🏘️ Buildings and land appear brighter</p>
+                        <p className="animate-fade-in" style={{ animationDelay: "6s" }}>🚨 This helps us spot floods quickly and save lives!</p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+                
+                {/* Water wave animation */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-cosmic-blue/20 to-transparent animate-pulse" />
+                </div>
+              </div>
+
+              {/* Video Controls */}
+              <div className="flex gap-4 justify-center">
+                {!videoPlaying ? (
+                  <Button
+                    onClick={() => setVideoPlaying(true)}
+                    variant="outline"
+                    className="border-cosmic-blue text-cosmic-blue hover:bg-cosmic-blue/20"
+                  >
+                    <Play className="w-4 h-4 mr-2" /> Play
+                  </Button>
+                ) : (
+                  <Button
+                    onClick={() => setVideoPlaying(false)}
+                    variant="outline"
+                    className="border-cosmic-blue text-cosmic-blue hover:bg-cosmic-blue/20"
+                  >
+                    <Pause className="w-4 h-4 mr-2" /> Pause
+                  </Button>
+                )}
+                <Button
+                  onClick={() => setVideoPlaying(false)}
+                  variant="outline"
+                  className="border-cosmic-blue text-cosmic-blue hover:bg-cosmic-blue/20"
+                >
+                  <RotateCcw className="w-4 h-4 mr-2" /> Replay
+                </Button>
+                <Button
+                  onClick={handleVideo3End}
+                  className="bg-cosmic-blue hover:bg-cosmic-blue/80 text-background font-bold"
                 >
                   Take Quiz <ArrowRight className="ml-2" />
                 </Button>
