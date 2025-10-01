@@ -102,7 +102,7 @@ const Level1 = () => {
       <StarField />
       
       {/* Orbiting Satellites */}
-      <div className="absolute top-20 right-20 animate-orbit" style={{ animationDuration: "25s" }}>
+      <div className="absolute top-20 right-20 z-0 animate-orbit" style={{ animationDuration: "25s" }}>
         <div className="w-20 h-20 flex items-center justify-center">
           <div className="relative">
             {/* Satellite body */}
@@ -118,7 +118,7 @@ const Level1 = () => {
         </div>
       </div>
 
-      <div className="absolute bottom-40 left-20 animate-orbit" style={{ animationDuration: "30s", animationDelay: "-5s" }}>
+      <div className="absolute bottom-40 left-20 z-0 animate-orbit" style={{ animationDuration: "30s", animationDelay: "-5s" }}>
         <div className="w-20 h-20 flex items-center justify-center">
           <div className="relative">
             {/* Satellite body */}
